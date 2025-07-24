@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "name": "Wireless Bluetooth Headphones",
+    "description": "Premium noise-cancelling wireless headphones with 30-hour battery life",
+    "price": 129.99,
+    "category": "Electronics",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
+    "inStock": true,
+    "rating": 4.5,
+    "tags": ["wireless", "bluetooth", "noise-cancelling", "premium"]
+  },
+  {
+    "id": "2",
+    "name": "Organic Cotton T-Shirt",
+    "description": "Soft, breathable organic cotton t-shirt available in multiple colors",
+    "price": 24.99,
+    "category": "Clothing",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop",
+    "inStock": true,
+    "rating": 4.2,
+    "tags": ["organic", "cotton", "comfortable", "sustainable"]
+  },
+  {
+    "id": "3",
+    "name": "Smart Fitness Watch",
+    "description": "Advanced fitness tracking with heart rate monitor and GPS",
+    "price": 199.99,
+    "category": "Electronics",
+    "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=300&h=300&fit=crop",
+    "inStock": false,
+    "rating": 4.7,
+    "tags": ["fitness", "smartwatch", "GPS", "health"]
+  },
+  {
+    "id": "4",
+    "name": "Artisan Coffee Beans",
+    "description": "Single-origin coffee beans roasted to perfection",
+    "price": 18.99,
+    "category": "Food & Beverage",
+    "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=300&h=300&fit=crop",
+    "inStock": true,
+    "rating": 4.8,
+    "tags": ["coffee", "artisan", "single-origin", "premium"]
+  },
+  {
+    "id": "5",
+    "name": "Minimalist Desk Lamp",
+    "description": "LED desk lamp with adjustable brightness and color temperature",
+    "price": 45.99,
+    "category": "Home & Garden",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+    "inStock": true,
+    "rating": 4.3,
+    "tags": ["LED", "adjustable", "minimalist", "desk"]
+  },
+  {
+    "id": "6",
+    "name": "Yoga Mat Premium",
+    "description": "High-quality non-slip yoga mat with excellent cushioning",
+    "price": 39.99,
+    "category": "Sports & Fitness",
+    "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=300&fit=crop",
+    "inStock": true,
+    "rating": 4.6,
+    "tags": ["yoga", "non-slip", "premium", "fitness"]
+  },
+  {
+    "id": "7",
+    "name": "Smartphone Case",
+    "description": "Durable protective case with wireless charging support",
+    "price": 15.99,
+    "category": "Electronics",
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&h=300&fit=crop",
+    "inStock": true,
+    "rating": 4.1,
+    "tags": ["protective", "wireless-charging", "durable", "smartphone"]
+  },
+  {
+    "id": "8",
+    "name": "Indoor Plant Pot Set",
+    "description": "Beautiful ceramic plant pots perfect for indoor gardening",
+    "price": 29.99,
+    "category": "Home & Garden",
+    "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=300&h=300&fit=crop",
+    "inStock": true,
+    "rating": 4.4,
+    "tags": ["ceramic", "indoor", "gardening", "decorative"]
+  }
+]
