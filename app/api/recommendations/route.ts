@@ -1,9 +1,11 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 import { NextRequest, NextResponse } from 'next/server';
 import { Product } from '@/types';
 
-// Use the secure server-side environment variable
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+// Initialize new SDK
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY!,
+});
 
 interface RequestBody {
   products: Product[];
@@ -13,10 +15,9 @@ interface RequestBody {
 export async function POST(request: NextRequest) {
   try {
     console.log('API route called');
-    
-    // Check if API key exists
+
     if (!process.env.GEMINI_API_KEY) {
-      console.error('GEMINI_API_KEY not found in environment variables');
+      console.error('GEMINI_API_KEY not found');
       return NextResponse.json(
         { error: 'API key not configured' },
         { status: 500 }
@@ -24,9 +25,9 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    console.log('Request body received:', { 
-      productsCount: body.products?.length, 
-      userQuery: body.userQuery 
+    console.log('Request body received:', {
+      productsCount: body.products?.length,
+      userQuery: body.userQuery,
     });
 
     const { products, userQuery }: RequestBody = body;
@@ -38,8 +39,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
     const productData = products.map((p: Product) => ({
       id: p.id,
       name: p.name,
@@ -48,10 +47,10 @@ export async function POST(request: NextRequest) {
       category: p.category,
       rating: p.rating,
       tags: p.tags,
-      inStock: p.inStock
+      inStock: p.inStock,
     }));
 
-    const prompt = userQuery 
+    const prompt = userQuery
       ? `Based on the user's request: "${userQuery}", recommend 3-4 products from this catalog that would best match their needs. Explain why these products work well together or fulfill their request.
 
 Available products:
@@ -76,22 +75,25 @@ Please respond in this exact JSON format:
 }`;
 
     console.log('Calling Gemini API...');
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+
+    const result = await ai.models.generateContent({
+      model: 'gemini-2.5-flash-lite',
+      contents: prompt,
+    });
+
+const text = result.text ?? '';
     console.log('Gemini response received');
-    
-    // Parse the JSON response
+
+    // SAME JSON parsing logic (unchanged)
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       console.error('Invalid JSON format in Gemini response:', text);
       throw new Error('Invalid response format');
     }
-    
+
     const aiResponse = JSON.parse(jsonMatch[0]);
     console.log('Parsed AI response:', aiResponse);
-    
-    // Map product IDs to actual products
+
     const recommendedProducts = aiResponse.productIds
       .map((id: string) => products.find((p: Product) => p.id === id))
       .filter(Boolean);
@@ -99,7 +101,7 @@ Please respond in this exact JSON format:
     const result_data = {
       products: recommendedProducts,
       reason: aiResponse.reason,
-      theme: aiResponse.theme
+      theme: aiResponse.theme,
     };
 
     console.log('Sending successful response');
@@ -107,12 +109,11 @@ Please respond in this exact JSON format:
 
   } catch (error) {
     console.error('API route error:', error);
-    
-    // Return error response instead of fallback
+
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to get AI recommendations',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

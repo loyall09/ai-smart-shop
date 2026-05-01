@@ -74,11 +74,11 @@ export default function HomePage() {
   const recommendedIds = aiRecommendation ? aiRecommendation.products.map(p => p.id) : [];
 
   return (
-    <div className="space-y-8">
+    <div className="px-4 py-4 space-y-8">
       {/* Hero Section */}
-      <div className="text-center py-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl">
+      <div className="text-center px-4 py-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl">
         <h2 className="text-4xl font-bold text-gray-800 mb-4">
-          Discover Amazing Products with AI
+          Discover Amazing Products with <br /> <span className='text-blue-900'>AI SMART-SHOP</span>
         </h2>
         <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
           Search through our curated collection or let our AI recommend products just for you
